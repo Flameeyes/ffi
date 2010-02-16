@@ -1,6 +1,8 @@
 require 'fileutils'
-require "#{File.join(ENV['RUBYLIBDIR'], 'ffi', 'tools', 'types_generator.rb')}"
-types_conf = File.join(ENV['RUBYLIBDIR'], 'ffi', 'types.conf') 
+require 'pathname'
+require Pathname.new(__FILE__).dirname + "../lib/ffi/tools/types_generator.rb"
+types_conf = (Pathname.new(__FILE__).dirname + "../lib/ffi/types.conf").to_s
+
 file types_conf do |task|
   options = {}
   FileUtils.mkdir_p(File.dirname(task.name), { :mode => 0755 })
